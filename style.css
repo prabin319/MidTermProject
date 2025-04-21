@@ -1,20 +1,29 @@
+/* Base Styles and Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  transition: all 0.3s ease;
 }
 
 body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  animation: fadeIn 0.5s ease-out;
+  color: #333;
+  background-color: #f9f9f9;
   line-height: 1.6;
   background-image: url(images/header-bg.png);
+  animation: fadeIn 0.5s ease-out;
 }
 
-/* Header & Navigation */
+a {
+  text-decoration: none;
+}
+
+/* Header & Navigation - Preserved Structure */
 header {
   background-color: #42200b;
   padding: 1rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .nav-container {
@@ -31,9 +40,14 @@ header {
   gap: 10px;
 }
 
-.logo-img {
-  height: 50px;
+.logo {
+  height: 40px;
   width: auto;
+  transition: transform 0.3s ease;
+}
+
+.logo-img:hover {
+  transform: scale(1.05);
 }
 
 .logo-text {
@@ -41,6 +55,11 @@ header {
   font-weight: bold;
   color: white;
   text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.logo-text:hover {
+  color: #ffc135;
 }
 
 .nav-links {
@@ -50,15 +69,33 @@ header {
 
 .nav-links li {
   margin-left: 1.5rem;
+  position: relative;
 }
 
 .nav-links a {
   color: white;
   text-decoration: none;
+  padding: 5px 0;
+  position: relative;
 }
 
 .nav-links a:hover {
   color: #ffc135;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: #ffc135;
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
 }
 
 /* Hero Section */
@@ -67,12 +104,14 @@ header {
   background-image: url(images/header-bg.png);
   padding: 3rem 1rem;
   text-align: center;
+  animation: fadeIn 0.8s ease-out;
 }
 
 .hero h1 {
   font-size: 2.5rem;
   color: #42200b;
   margin-bottom: 1rem;
+  animation: slideDown 0.8s ease-out;
 }
 
 .hero p {
@@ -80,9 +119,10 @@ header {
   color: #333;
   max-width: 600px;
   margin: 0 auto 1rem;
+  animation: slideUp 0.8s ease-out;
 }
 
-/* Menu Section */
+/* Menu Section - General */
 .menu {
   padding: 3rem 1rem;
   max-width: 1200px;
@@ -96,8 +136,24 @@ header {
   color: #42200b;
   margin-bottom: 2rem;
   font-size: 2rem;
+  position: relative;
+  padding-bottom: 10px;
 }
 
+.section-title::after,
+.menu h2::after,
+.gallery-title::after {
+  content: '';
+  position: absolute;
+  width: 80px;
+  height: 3px;
+  background-color: #ffc135;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Menu Page Specific */
 .menu-category {
   color: #42200b;
   font-size: 1.8rem;
@@ -121,16 +177,26 @@ header {
 
 .menu-item {
   border: 1px solid #ddd;
-  padding: 1.5rem;
-  border-radius: 5px;
-  text-align: center;
+  border-radius: 8px;
+  overflow: hidden;
   background-color: #fff;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.menu-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
 }
 
 .menu-item img {
   max-width: 100%;
   height: auto;
-  margin-bottom: 1rem;
+  transition: transform 0.5s ease;
+}
+
+.menu-item:hover img {
+  transform: scale(1.05);
 }
 
 .menu-item h3 {
@@ -139,13 +205,14 @@ header {
 }
 
 .menu-item-content {
-  padding: 15px 0;
+  padding: 15px;
 }
 
 .price {
   color: #df1c1c;
   font-weight: bold;
   margin: 1rem 0;
+  font-size: 1.1rem;
 }
 
 .btn {
@@ -158,10 +225,24 @@ header {
   border: none;
   cursor: pointer;
   font-size: 1rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
 .btn:hover {
   background-color: #42200b;
+}
+
+.btn::after {
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 150px;
+  top: 0;
+  left: -200px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: shine 3s infinite;
 }
 
 /* Gallery Section */
@@ -192,18 +273,19 @@ header {
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   height: 250px;
-  transition: transform 0.3s;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .gallery-item:hover {
   transform: scale(1.03);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
 }
 
 .gallery-item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s;
+  transition: transform 0.5s ease;
 }
 
 .gallery-item:hover img {
@@ -219,7 +301,7 @@ header {
   color: white;
   padding: 15px;
   transform: translateY(100%);
-  transition: transform 0.3s;
+  transition: transform 0.3s ease;
 }
 
 .gallery-item:hover .gallery-caption {
@@ -240,6 +322,11 @@ header {
   width: 100%;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.about-image img:hover {
+  transform: scale(1.02);
 }
 
 .about-content h2 {
@@ -274,6 +361,11 @@ header {
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.team-member:hover {
+  transform: translateY(-5px);
 }
 
 .team-member img {
@@ -284,6 +376,11 @@ header {
   margin: 0 auto 15px;
   display: block;
   border: 3px solid #ffc135;
+  transition: transform 0.3s ease;
+}
+
+.team-member:hover img {
+  transform: scale(1.05);
 }
 
 /* Values Section */
@@ -309,6 +406,11 @@ header {
 .value-card {
   text-align: center;
   padding: 20px;
+  transition: transform 0.3s ease;
+}
+
+.value-card:hover {
+  transform: translateY(-5px);
 }
 
 .value-card i {
@@ -355,6 +457,11 @@ header {
   display: flex;
   align-items: center;
   margin-bottom: 15px;
+  transition: transform 0.3s ease;
+}
+
+.contact-item:hover {
+  transform: translateX(5px);
 }
 
 .contact-icon {
@@ -418,6 +525,14 @@ header {
   border: 1px solid #ddd;
   border-radius: 5px;
   font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #ffc135;
 }
 
 .form-group textarea {
@@ -479,6 +594,11 @@ footer {
 
 .footer-links li {
   margin-bottom: 8px;
+  transition: transform 0.3s ease;
+}
+
+.footer-links li:hover {
+  transform: translateX(5px);
 }
 
 .copyright {
@@ -487,7 +607,51 @@ footer {
   padding-top: 20px;
 }
 
-/* Responsive Design */
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shine {
+  0% {
+    left: -200px;
+  }
+  20% {
+    left: 100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Responsive design - using original structure */
 @media (min-width: 768px) {
   .about-section,
   .contact-section {
