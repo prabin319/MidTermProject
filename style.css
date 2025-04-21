@@ -352,7 +352,7 @@ header {
   line-height: 1.6;
 }
 
-/* Team Section */
+
 .team-section {
   max-width: 1200px;
   margin: 50px auto;
@@ -475,13 +475,6 @@ header {
   transform: translateX(5px);
 }
 
-.contact-icon {
-  font-size: 1.5rem;
-  color: #df1c1c;
-  margin-right: 15px;
-  width: 30px;
-  text-align: center;
-}
 
 .hours-table {
   width: 100%;
