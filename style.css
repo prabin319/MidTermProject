@@ -3,35 +3,6 @@
   padding: 0;
   box-sizing: border-box;
 }
-
-        /* Add this to your existing CSS or style.css file */
-        .logo-container {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-      }
-      
-      .logo-img {
-          height: 50px; /* Adjust size as needed */
-          width: auto;
-      }
-      
-      .logo-text {
-          font-size: 24px;
-          font-weight: bold;
-          color: white;
-          text-decoration: none;
-      }
-      
-      @media (max-width: 768px) {
-          .logo-img {
-              height: 40px; /* Smaller on mobile */
-          }
-          .logo-text {
-              font-size: 20px;
-          }
-      }
-
 body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   animation: fadeIn 0.5s ease-out;
@@ -40,6 +11,32 @@ body {
 }
 
 /* Header & Navigation */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-img {
+            height: 50px;
+            width: auto;
+        }
+        
+        .logo-text {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+        
+        @media (max-width: 768px) {
+            .logo-img {
+                height: 40px;
+            }
+            .logo-text {
+                font-size: 20px;
+            }
+        }
 header {
   background-color: #42200b;
   padding: 1rem;
@@ -53,13 +50,13 @@ header {
   margin: 0 auto;
 }
 
-.logo {
+/* .logo {
   
   color: white;
   font-size: 2rem;
   font-weight: bold;
   text-decoration: none;
-}
+} */
 
 .nav-links {
   display: flex;
